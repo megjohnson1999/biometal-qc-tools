@@ -1,0 +1,31 @@
+[package]
+name = "biometal-qc-tools"
+version = "0.1.0"
+edition = "2021"
+description = "Fast QC tools for virome analysis using biometal primitives"
+authors = ["Megan Johnson <megjohnson1999@users.noreply.github.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/megjohnson1999/biometal-qc-tools"
+
+[[bin]]
+name = "biometal-quality-stats"
+path = "src/bin/quality_stats.rs"
+
+[[bin]]
+name = "biometal-contamination-screen"
+path = "src/bin/contamination_screen.rs"
+
+[[bin]]
+name = "biometal-vlp-assessment"
+path = "src/bin/vlp_assessment.rs"
+
+[[bin]]
+name = "biometal-qc-summary"
+path = "src/bin/qc_summary.rs"
+
+[dependencies]
+biometal = { path = "../biometal" }
+clap = { version = "4.0", features = ["derive"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

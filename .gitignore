@@ -1,0 +1,31 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+
+# Cargo lock file (include for binaries, exclude for libraries)
+Cargo.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# QC output files (for testing)
+*.json
+*.html
+*.txt
+test_data/
+
+# Temporary files
+*.tmp
+*.temp
