@@ -1,5 +1,6 @@
 # Rust build artifacts
 /target/
+debug
 **/*.rs.bk
 
 # Cargo lock file (include for binaries, exclude for libraries)
@@ -29,3 +30,9 @@ test_data/
 # Temporary files
 *.tmp
 *.temp
+
+# MSVC Windows builds
+*.pdb
+
+# Cargo mutants testing data
+**/mutants.out*/
