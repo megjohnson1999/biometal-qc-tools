@@ -23,6 +23,38 @@ path = "src/bin/vlp_assessment.rs"
 name = "biometal-qc-summary"
 path = "src/bin/qc_summary.rs"
 
+[[bin]]
+name = "biometal-polyg-trim"
+path = "src/bin/polyg_trim.rs"
+
+[[bin]]
+name = "biometal-quality-filter"
+path = "src/bin/quality_filter.rs"
+
+[[bin]]
+name = "biometal-adapter-trim"
+path = "src/bin/adapter_trim.rs"
+
+[[bin]]
+name = "biometal-primer-remove"
+path = "src/bin/primer_remove.rs"
+
+[[bin]]
+name = "biometal-rrna-remove"
+path = "src/bin/rrna_remove.rs"
+
+[[bin]]
+name = "biometal-optical-dedup"
+path = "src/bin/optical_dedup.rs"
+
+[[bin]]
+name = "biometal-pcr-dedup"
+path = "src/bin/pcr_dedup.rs"
+
+[[bin]]
+name = "biometal-host-depletion"
+path = "src/bin/host_depletion.rs"
+
 [dependencies]
 biometal = { path = "../biometal" }
 clap = { version = "4.0", features = ["derive"] }
