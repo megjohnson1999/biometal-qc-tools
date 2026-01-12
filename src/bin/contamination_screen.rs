@@ -42,6 +42,14 @@ fn main() -> Result<()> {
                 .help("Vector contamination threshold (%)")
                 .default_value("0.05"),
         )
+        .arg(
+            Arg::new("min_length")
+                .short('l')
+                .long("min-length")
+                .value_name("LENGTH")
+                .help("Minimum read length")
+                .default_value("50"),
+        )
         .get_matches();
 
     // Parse arguments
@@ -55,10 +63,15 @@ fn main() -> Result<()> {
         .get_one::<String>("vector_threshold")
         .unwrap()
         .parse()?;
+    let min_length: usize = matches
+        .get_one::<String>("min_length")
+        .unwrap()
+        .parse()?;
 
     println!("🔍 Biometal Contamination Screening Tool");
     println!("Input: {}", input_file.display());
     println!("Output: {}", output_file.display());
+    println!("Min Length: {}", min_length);
 
     // Validate input file exists
     if !input_file.exists() {
@@ -66,7 +79,7 @@ fn main() -> Result<()> {
     }
 
     // Create contamination screener
-    let screener = ContaminationScreener::new(phix_threshold, vector_threshold);
+    let screener = ContaminationScreener::new(phix_threshold, vector_threshold, min_length);
 
     // Screen for contamination
     println!("🦠 Screening for contamination...");

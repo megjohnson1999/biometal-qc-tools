@@ -12,10 +12,16 @@ pub mod quality;
 pub mod contamination;
 pub mod vlp;
 pub mod reporting;
+pub mod adapters;
+pub mod primers;
+pub mod rrna;
 
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::path::Path;
+
+/// Trait for QC statistics structures
+pub trait QcStatsMarker: Clone + Serialize + for<'de> Deserialize<'de> + std::fmt::Debug {}
 
 /// Common QC statistics structure
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -27,6 +33,28 @@ pub struct QcStats {
     pub mean_quality: f64,
     pub q30_bases: f64,
     pub complexity_score: f64,
+}
+
+/// PolyG trimming statistics
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PolyGStats {
+    pub sample_name: String,
+    pub total_reads: u64,
+    pub reads_trimmed: u64,
+    pub reads_discarded: u64,
+    pub total_bases_removed: u64,
+    pub average_trim_length: f64,
+}
+
+/// Quality filtering statistics
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct QualityFilterStats {
+    pub sample_name: String,
+    pub total_reads: u64,
+    pub reads_passed: u64,
+    pub reads_failed: u64,
+    pub pass_rate: f64,
+    pub quality_threshold: f64,
 }
 
 /// Read a FASTQ file and return basic metadata

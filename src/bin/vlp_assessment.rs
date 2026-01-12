@@ -49,6 +49,14 @@ fn main() -> Result<()> {
                 .help("Maximum GC content for optimal range")
                 .default_value("0.65"),
         )
+        .arg(
+            Arg::new("min_length")
+                .short('l')
+                .long("min-length")
+                .value_name("LENGTH")
+                .help("Minimum read length")
+                .default_value("50"),
+        )
         .get_matches();
 
     // Parse arguments
@@ -60,10 +68,15 @@ fn main() -> Result<()> {
         .parse()?;
     let gc_min: f64 = matches.get_one::<String>("gc_min").unwrap().parse()?;
     let gc_max: f64 = matches.get_one::<String>("gc_max").unwrap().parse()?;
+    let min_length: usize = matches
+        .get_one::<String>("min_length")
+        .unwrap()
+        .parse()?;
 
     println!("🦠 Biometal VLP Assessment Tool");
     println!("Input: {}", input_file.display());
     println!("Output: {}", output_file.display());
+    println!("Min Length: {}", min_length);
 
     // Validate input file exists
     if !input_file.exists() {
@@ -71,7 +84,7 @@ fn main() -> Result<()> {
     }
 
     // Create VLP assessor
-    let assessor = VlpAssessor::new(min_complexity, (gc_min, gc_max));
+    let assessor = VlpAssessor::new(min_complexity, (gc_min, gc_max), min_length);
 
     // Assess VLP success
     println!("🧬 Assessing VLP success metrics...");

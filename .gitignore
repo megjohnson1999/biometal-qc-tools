@@ -36,3 +36,6 @@ test_data/
 
 # Cargo mutants testing data
 **/mutants.out*/
+
+# Planning documents (private notes)
+IMPLEMENTATION_PLAN.md
